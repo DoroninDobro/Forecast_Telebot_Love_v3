@@ -12,12 +12,12 @@ from random import randint
 # Ubud
 bot = telebot.TeleBot(TOKEN)
 owm = pyowm.OWM(OWM_TOKEN, language="ru")
-os.chdir('telegram')
+os.chdir("C:\\Forecast_Telebot_Love_v3-master\\")
 
 
 @bot.message_handler(commands=['start'])  # it is welcome part
 def welcome(message):
-    sti = open('hello.jpeg', 'rb')
+    sti = open("hello.jpeg", 'rb')
     bot.send_sticker(message.chat.id, sti)
     bot.send_message(message.chat.id, "Because Dreams Come True, if You Really Want =)")
 
@@ -57,10 +57,10 @@ def send_echo(message):
         # My first easter egg for culture people))
         elif user_text[1:5] == 'hank' or user_text[1:7] == 'пасибо':
             if 22 > datetime.datetime.now().hour > 6:
-                sti4 = open('nice_day.jpg', 'rb')
+                sti4 = open("nice_day.jpg", 'rb')
                 bot.send_sticker(message.chat.id, sti4)
             else:
-                sti5 = open('good_night.png', 'rb')
+                sti5 = open("good_night.png", 'rb')
                 bot.send_sticker(message.chat.id, sti5)
         # mainpart: Forecast for Saint-Petersburg
         else:
@@ -78,11 +78,12 @@ def send_echo(message):
             # add stickers =))
             x_r = randint(1, 3)
             if 'дождь' in answer or 'ливень' in answer:
-                name = f'rain{x_r}.png'
+                name = f'rain{str(x_r)}.png'
                 stik = open(name, 'rb')
                 bot.send_sticker(message.chat.id, stik)
             if 'солнечно' in answer or 'солнце' in answer:
-                name = f'sun{x_r}.png'
+                name = f'sun{str(x_r)}.png'
+		        #name = f'sun{str(x_r)}.png'
                 sti2 = open(name, 'rb')
                 bot.send_sticker(message.chat.id, sti2)
             bot.send_message(message.chat.id, answer)
